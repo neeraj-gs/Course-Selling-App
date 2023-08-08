@@ -4,21 +4,23 @@ import {Button,TextField,Card,Typography} from '@mui/material'
 const Signup = () => {
   return (
     <div>
-      <center style={{marginTop:300}}>
-        <Typography fontSize={40} fontStyle={'italic'} fontWeight={1000}>Welcome to Coursify.</Typography>
-        <Typography fontSize={30} fontStyle={'italic'}>Sign Up</Typography>
-        <Card variant="outlined" style={{width:600,padding:20}}>
+      <center style={{paddingTop:300}}>
+        <Typography fontSize={30} variant={'h3'} fontStyle={'italic'} fontWeight={1000}>Welcome to Coursify.</Typography>
+        <Typography fontSize={20} fontStyle={'italic'}>Sign Up</Typography>
+        <Card variant="outlined" style={{width:600,padding:30,height:300}}>
 
         <div>
-          <div style={{display:'flex',justifyContent:'space-around'}}>
+          <div style={{display:'flex',justifyContent:'space-evenly',padding:10}}>
           <Button variant="contained">Sign up with Facebook</Button>
             <Button variant="contained">Sign up with Google</Button>
           </div>
         
             <br />
-            <TextField label="Username" variant="outlined" />
+            <TextField fullWidth label="Username" variant="outlined" />
             <br />
-            <TextField label="Password" variant="outlined" />
+            <br />
+            <TextField fullWidth label="Password" variant="outlined" />
+            <br />
             <br />
             <Button variant="contained">Sign Up</Button>
         </div>
