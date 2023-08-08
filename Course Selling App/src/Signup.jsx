@@ -1,21 +1,30 @@
 import React from 'react'
+import {Button,TextField,Card,Typography} from '@mui/material'
 
 const Signup = () => {
   return (
     <div>
-        <h2>Welcome to Coursify.Sign up Below</h2>
+      <center style={{marginTop:300}}>
+        <Typography fontSize={40} fontStyle={'italic'} fontWeight={1000}>Welcome to Coursify.</Typography>
+        <Typography fontSize={30} fontStyle={'italic'}>Sign Up</Typography>
+        <Card variant="outlined" style={{width:600,padding:20}}>
 
         <div>
-            <button>Sign Up with Facebook</button>
+          <div style={{display:'flex',justifyContent:'space-around'}}>
+          <Button variant="contained">Sign up with Facebook</Button>
+            <Button variant="contained">Sign up with Google</Button>
+          </div>
+        
             <br />
-            <button>Sign up with Google</button>
+            <TextField label="Username" variant="outlined" />
             <br />
-            <input type="text" placeholder='Username'/>
+            <TextField label="Password" variant="outlined" />
             <br />
-            <input type="password" placeholder='Password'/>
-            <br />
-            <button>Sign Up</button>
+            <Button variant="contained">Sign Up</Button>
         </div>
+
+        </Card>
+        </center>
     </div>
     
   )
