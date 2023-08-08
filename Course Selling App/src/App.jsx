@@ -3,7 +3,7 @@ import Signup from './Signup'
 
 const App = () => {
   return (
-    <div>
+    <div style={{width:"100vw",height:"100vh",backgroundColor:"#eeeeee"}}>
       <Signup />
     </div>
   )
