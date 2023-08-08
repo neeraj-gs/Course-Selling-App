@@ -3,10 +3,11 @@ import {Button,TextField,Card,Typography} from '@mui/material'
 
 const Signup = () => {
   return (
-    <div>
-      <center style={{paddingTop:300}}>
-        <Typography fontSize={30} variant={'h3'} fontStyle={'italic'} fontWeight={1000}>Welcome to Coursify.</Typography>
+    <div style={{display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center',paddingTop:200}}>
+      <Typography fontSize={30} variant={'h3'} fontStyle={'italic'} fontWeight={1000}>Welcome to Coursify.</Typography>
         <Typography fontSize={20} fontStyle={'italic'}>Sign Up</Typography>
+      <div >
+        
         <Card variant="outlined" style={{width:600,padding:30,height:300}}>
 
         <div>
@@ -26,7 +27,7 @@ const Signup = () => {
         </div>
 
         </Card>
-        </center>
+        </div>
     </div>
     
   )
