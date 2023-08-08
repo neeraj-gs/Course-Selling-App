@@ -17,13 +17,28 @@ const Signup = () => {
           </div>
         
             <br />
-            <TextField fullWidth label="Username" variant="outlined" />
+            <TextField fullWidth label="Username" variant="outlined" id="username"/>
             <br />
             <br />
-            <TextField fullWidth label="Password" variant="outlined" />
+            <TextField fullWidth label="Password" variant="outlined" id="password"/>
             <br />
             <br />
-            <Button variant="contained">Sign Up</Button>
+            <Button variant="contained"
+              onClick={()=>{
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+                fetch("http://localhost:3000/admin/signup",{
+                  method:"POST",
+                  body:JSON.stringify({
+                    username,
+                    password
+                  }),
+                  headers:{
+                    "Content-type":"application/json"
+                  }
+                })
+              }}
+            >Sign Up</Button>
         </div>
 
         </Card>
