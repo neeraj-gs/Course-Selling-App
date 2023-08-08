@@ -46,7 +46,9 @@ const Signup = () => {
                   }
                 }).then((res)=>{
                   res.json().then((data)=>{
+                    localStorage.setItem("token",data.token)
                     console.log(data)
+
                   })
                 })
               }}
