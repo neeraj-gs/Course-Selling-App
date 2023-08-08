@@ -18,13 +18,38 @@ const Courses = () => {
         <div>
         
             <br />
-            <TextField fullWidth label="Course Name" variant="outlined" />
+            <TextField fullWidth label="Course Name" variant="outlined" onChange={(e)=>{
+                setTitle(e.target.value)
+            }}/>
             <br />
             <br />
-            <TextField fullWidth label="Course Description" variant="outlined" />
+            <TextField fullWidth label="Course Description" variant="outlined" onChange={(e)=>{
+                setDesc(e.target.value)
+            }}/>
             <br />
             <br />
-            <Button variant="contained">Add Course</Button>
+            <Button variant="contained" 
+            onClick={()=>{
+                fetch("http://localhost:3000/admin/courses",{
+                    method:"POST",
+                    body:JSON.stringify({
+                        title:title,
+                        description:desc,
+                        imageLink:"",
+                        published:true
+                    }),
+                    headers:{
+                        "Content-type":"application/json",
+                        "Authorization":"Bearer" + localStorage.getItem("token")
+                    }
+                }).then((res)=>{
+                    res.json().then((data)=>{
+                        console.log(data)
+                    })
+                })
+            }}
+            
+            >Add Course</Button>
         </div>
 
         </Card>
