@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Signup from './Signup'
 import Appbar from './Appbar'
 import Signin from './Singin'
+import Courses from './Courses'
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/addcourse" element={<Courses />} />
+        <Route path="/course" element={<Courses />} />
       </Routes>
     </Router>
     </div>
