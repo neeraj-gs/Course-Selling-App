@@ -9,7 +9,7 @@ const Appbar = () => {
             fetch("http://localhost:3000/admin/me",{
                 method:"GET",
                 headers:{
-                    "Authorization":"Bearer"+localStorage.getItem("token")
+                    "Authorization":"Bearer "+localStorage.getItem("token")
                 }
             }).then((res)=>{
                 res.json().then((data)=>{
