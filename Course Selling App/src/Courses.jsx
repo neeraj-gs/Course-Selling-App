@@ -35,12 +35,10 @@ const Courses = () => {
                     body:JSON.stringify({
                         title:title,
                         description:desc,
-                        imageLink:"",
-                        published:true
                     }),
                     headers:{
                         "Content-type":"application/json",
-                        "Authorization":"Bearer" + localStorage.getItem("token")
+                        "Authorization":"Bearer " + localStorage.getItem("token")
                     }
                 }).then((res)=>{
                     res.json().then((data)=>{
