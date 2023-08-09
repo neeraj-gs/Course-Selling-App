@@ -42,6 +42,7 @@ const Appbar = () => {
                             // window.location="/signin"
                             localStorage.setItem("token",null)
                             // navigate("/signup")
+                            window.location="/" //it automaticallyrefresh the app bar and all hte items in data are gone or refreshed
                         }}
                     >Logout</Button>
                     </div>

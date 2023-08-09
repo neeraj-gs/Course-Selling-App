@@ -47,6 +47,7 @@ const Signup = () => {
                 }).then((res)=>{
                   res.json().then((data)=>{
                     localStorage.setItem("token",data.token)
+                    window.location="/" //rehreshs again adn request goes out again
                     console.log(data)
 
                   })
