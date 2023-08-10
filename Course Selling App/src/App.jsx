@@ -11,6 +11,7 @@ const App = () => {
   return (
     <div style={{width:"100vw",height:"100vh",backgroundColor:"#eeeeee"}}>
 
+<RecoilRoot>
     <Router>
     <Appbar />
       <Routes>
@@ -23,6 +24,7 @@ const App = () => {
         {/* we use : to capture any random end point and takes that as a parameter and then based on end point renders specific value */}
       </Routes>
     </Router>
+    </RecoilRoot>
     </div>
   )
 }
