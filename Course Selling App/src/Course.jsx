@@ -20,7 +20,7 @@ const Course = () => {
     },[])
 
 
-    let course;
+    let course=null;
     for(let i=0;i<courses.length;i++){
         if(courses[i].id==courseId){
             course = courses[i];
@@ -37,7 +37,7 @@ const Course = () => {
   return (
     <div>
     <CourseCard course={course}/>
-    <UpdateCard course={course}/>
+    <UpdateCard courses={courses} setCourses={setCourses} course={course}/>
     </div>
     
   )
@@ -91,7 +91,7 @@ const UpdateCard = (props)=>{
             }}/>
             <Button variant="contained" 
             onClick={()=>{
-                fetch("http://localhost:3000/admin/courses/"+props.course.id,{
+                fetch("http://localhost:3000/admin/courses/"+ props.course.id,{
                     method:"PUT",
                     body:JSON.stringify({
                         title:title,
@@ -106,6 +106,20 @@ const UpdateCard = (props)=>{
                 }).then((res)=>{
                     res.json().then((data)=>{
                         console.log(data)
+                        let updatedCourses=[];
+                        for(let i=0;i<props.courses.length;i++){
+                            if(props.courses[i].id == props.course.id){
+                                updatedCourses.push({
+                                    id:props.course.id,
+                                    title:title,
+                                    description:desc,
+                                    imageLink:image
+                                })
+                            }else{
+                                updatedCourses.push(props.courses[i]);
+                            }
+                        }
+                        props.setCourses(updatedCourses)
                     })
                 })
             }}
