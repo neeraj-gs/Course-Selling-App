@@ -19,8 +19,14 @@ const GetCourses = () => {
     },[])
 
   return (
-    <div style={{display:'flex'}}>
-        <Typography variant='h4'>Courses</Typography>
+    <div>
+    <Typography variant='h4'>Courses</Typography>
+    <br />
+        <br />
+        <br />
+    <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
+        
+        
         {/* {JSON.stringify(courses)} */}
         {courses.map((course)=>{
         return(
@@ -29,6 +35,7 @@ const GetCourses = () => {
     })}
 
         
+    </div>
     </div>
   )
 }
