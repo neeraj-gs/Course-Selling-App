@@ -1,10 +1,16 @@
 import React, { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import {Card,Typography,TextField,Button} from '@mui/material'
+import {atom, useRecoilState, useSetRecoilState} from 'recoil'
 
 const Course = () => {
+
+    const setCourses = useSetRecoilState(coursesState);
+    //parent ele eis not subscribe to course stae atom 
+    //only setCOutses is there and the courseStae that is atom is not there
+
     let {courseId}=useParams(); //we need useParams to take the dynamic value the anme as to be same as in path in Router
-    const [courses,setCourses]=useState([]);
+    // const [courses,setCourses]=useState([]);
     useEffect(()=>{
         fetch("http://localhost:3000/admin/courses",{
             method:"GET",
@@ -20,12 +26,7 @@ const Course = () => {
     },[])
 
 
-    let course=null;
-    for(let i=0;i<courses.length;i++){
-        if(courses[i].id==courseId){
-            course = courses[i];
-        }
-    }
+    
 
     if(!course){
         return <div>
@@ -36,14 +37,22 @@ const Course = () => {
 
   return (
     <div>
-    <CourseCard course={course}/>
-    <UpdateCard courses={courses} setCourses={setCourses} course={course}/>
+    <CourseCard />
+    <UpdateCard courseId={courseId}/>
     </div>
     
   )
 }
 
 const CourseCard = (props)=>{
+    const courses = useRecoilState(coursesState);
+    let course=null;
+    for(let i=0;i<courses.length;i++){
+        if(courses[i].id==courseId){
+            course = courses[i];
+        }
+    }
+
     return <div>
     return <Card style={{
     margin:15,
@@ -63,6 +72,8 @@ const UpdateCard = (props)=>{
     const [desc,setDesc] = useState("")
     const [image,setImage] =useState("");
     // const course=props.course;
+
+    const [courses,setCourses] = useRecoilState(coursesState)
 
   return (
     
@@ -108,9 +119,9 @@ const UpdateCard = (props)=>{
                         console.log(data)
                         let updatedCourses=[];
                         for(let i=0;i<props.courses.length;i++){
-                            if(props.courses[i].id == props.course.id){
+                            if(props.courses[i].id == props.courseId){
                                 updatedCourses.push({
-                                    id:props.course.id,
+                                    id:props.courseId,
                                     title:title,
                                     description:desc,
                                     imageLink:image
@@ -134,3 +145,9 @@ const UpdateCard = (props)=>{
 }
 
 export default Course
+
+
+const coursesState = atom({
+    key:'coursesState',
+    default:'',
+});
