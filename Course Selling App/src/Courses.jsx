@@ -5,6 +5,7 @@ const Courses = () => {
 
     const [title,setTitle] = useState("");
     const [desc,setDesc] = useState("")
+    const [image,setImage] =useState("");
 
   return (
     
@@ -28,6 +29,9 @@ const Courses = () => {
             }}/>
             <br />
             <br />
+            <TextField fullWidth label="ImageLink" variant="outlined" onChange={(e)=>{
+                setImage(e.target.value)
+            }}/>
             <Button variant="contained" 
             onClick={()=>{
                 fetch("http://localhost:3000/admin/courses",{
@@ -35,6 +39,8 @@ const Courses = () => {
                     body:JSON.stringify({
                         title:title,
                         description:desc,
+                        imageLink:image,
+                        published:true
                     }),
                     headers:{
                         "Content-type":"application/json",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Typography}from '@mui/material'
+import {Typography,Card}from '@mui/material'
 
 const GetCourses = () => {
     const [courses,setCourses]=useState([]);
@@ -12,19 +12,39 @@ const GetCourses = () => {
         }).then((res)=>{
             res.json().then((data)=>{
                 console.log(data)
-                setCourses(data)
+                setCourses(data.courses)
             })
         })
 
     },[])
 
   return (
-    <div>
+    <div style={{display:'flex'}}>
         <Typography variant='h4'>Courses</Typography>
-        {JSON.stringify(courses)}
+        {/* {JSON.stringify(courses)} */}
+        {courses.map((course)=>{
+        return(
+            <Course course={course}/>
+        )
+    })}
+
         
     </div>
   )
 }
+
+const Course=(props)=>{
+    return <Card style={{
+        margin:15,
+        width:300,
+        minHeight:200
+    }}>
+        <Typography textAlign='center' variant='h5'>{props.course.title}</Typography>
+        <Typography textAlign='center' variant='subtitle1'>{props.course.description}</Typography>
+        <img src={props.course.imageLink} style={{width:200,alignContent:'center',alignItems:'center'}} alt="WebD Course" />
+        </Card>
+}
+
+
 
 export default GetCourses
