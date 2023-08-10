@@ -17,6 +17,8 @@ const App = () => {
         <Route path="/signin" element={<Signin />} />
         <Route path="/admin/courses" element={<Courses />} />
         <Route path="/courses" element={<GetCourses />} />
+        <Route path="/course/:courseId" element={<GetCourses />} />
+        {/* we use : to capture any random end point and takes that as a parameter and then based on end point renders specific value */}
       </Routes>
     </Router>
     </div>
