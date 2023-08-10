@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {Typography}from '@mui/material'
 
 const GetCourses = () => {
     const [courses,setCourses]=useState([]);
@@ -11,6 +12,7 @@ const GetCourses = () => {
         }).then((res)=>{
             res.json().then((data)=>{
                 console.log(data)
+                setCourses(data)
             })
         })
 
@@ -18,6 +20,8 @@ const GetCourses = () => {
 
   return (
     <div>
+        <Typography variant='h4'>Courses</Typography>
+        {JSON.stringify(courses)}
         
     </div>
   )
