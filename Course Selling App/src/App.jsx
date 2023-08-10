@@ -4,6 +4,7 @@ import Signup from './Signup'
 import Appbar from './Appbar'
 import Signin from './Singin'
 import Courses from './Courses'
+import GetCourses from './GetCourses'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/admin/courses" element={<Courses />} />
+        <Route path="/courses" element={<GetCourses />} />
       </Routes>
     </Router>
     </div>
