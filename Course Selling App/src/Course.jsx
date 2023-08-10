@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import {Card,Typography,TextField,Button} from '@mui/material'
-import {atom, useRecoilState, useSetRecoilState} from 'recoil'
+import {atom, useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 
 const Course = () => {
 
@@ -28,16 +28,12 @@ const Course = () => {
 
     
 
-    if(!course){
-        return <div>
-            Loading......
-        </div>
-    }
+   
 
 
   return (
     <div>
-    <CourseCard />
+    <CourseCard courseId={courseId}/>
     <UpdateCard courseId={courseId}/>
     </div>
     
@@ -45,10 +41,10 @@ const Course = () => {
 }
 
 const CourseCard = (props)=>{
-    const courses = useRecoilState(coursesState);
+    const courses = useRecoilValue(coursesState);
     let course=null;
     for(let i=0;i<courses.length;i++){
-        if(courses[i].id==courseId){
+        if(courses[i].id==props.courseId){
             course = courses[i];
         }
     }
@@ -59,9 +55,9 @@ const CourseCard = (props)=>{
     width:300,
     minHeight:200
 }}>
-    <Typography textAlign='center' variant='h5'>{props.course.title}</Typography>
-    <Typography textAlign='center' variant='subtitle1'>{props.course.description}</Typography>
-    <img src={props.course.imageLink} style={{width:200,alignContent:'center',alignItems:'center'}} alt="WebD Course" />
+    <Typography textAlign='center' variant='h5'>{courses.title}</Typography>
+    <Typography textAlign='center' variant='subtitle1'>{courses.description}</Typography>
+    <img src={courses.imageLink} style={{width:200,alignContent:'center',alignItems:'center'}} alt="WebD Course" />
     </Card>
 </div>
 }
@@ -74,6 +70,12 @@ const UpdateCard = (props)=>{
     // const course=props.course;
 
     const [courses,setCourses] = useRecoilState(coursesState)
+
+    if(!courses){
+        return <div>
+            Loading......
+        </div>
+    }
 
   return (
     
@@ -102,7 +104,7 @@ const UpdateCard = (props)=>{
             }}/>
             <Button variant="contained" 
             onClick={()=>{
-                fetch("http://localhost:3000/admin/courses/"+ props.course.id,{
+                fetch("http://localhost:3000/admin/courses/"+ props.courseId,{
                     method:"PUT",
                     body:JSON.stringify({
                         title:title,
@@ -118,8 +120,8 @@ const UpdateCard = (props)=>{
                     res.json().then((data)=>{
                         console.log(data)
                         let updatedCourses=[];
-                        for(let i=0;i<props.courses.length;i++){
-                            if(props.courses[i].id == props.courseId){
+                        for(let i=0; i< courses.length; i++){
+                            if(courses[i].id == props.courseId){
                                 updatedCourses.push({
                                     id:props.courseId,
                                     title:title,
@@ -127,10 +129,10 @@ const UpdateCard = (props)=>{
                                     imageLink:image
                                 })
                             }else{
-                                updatedCourses.push(props.courses[i]);
+                                updatedCourses.push(courses[i]);
                             }
                         }
-                        props.setCourses(updatedCourses)
+                        setCourses(updatedCourses)
                     })
                 })
             }}
